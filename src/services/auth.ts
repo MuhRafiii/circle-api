@@ -54,10 +54,8 @@ export async function login(identifier: string, password: string) {
     },
   });
 
-  if (!user) throw new Error("user not found");
-
-  const isMatch = await bcrypt.compare(password, user.password);
-  if (!isMatch) throw new Error("wrong password");
+  const isMatch = await bcrypt.compare(password, user!.password);
+  if (!user || !isMatch) throw new Error("Invalid username or password");
 
   const token = signToken({
     id: user.id,
@@ -73,12 +71,3 @@ export async function login(identifier: string, password: string) {
     token,
   };
 }
-
-// export async function updateUser(id: number, name: string, picture: string) {
-//   const update = await prisma.user.update({
-//     where: { id },
-//     data: { name, picture },
-//   });
-
-//   return { name: update.name, picture: update.picture };
-// }

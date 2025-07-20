@@ -28,8 +28,3 @@ export const loginSchema = Joi.object({
     "string.empty": "password is required",
   }),
 });
-
-// export const updateUserSchema = Joi.object({
-//   name: Joi.string().min(3),
-//   picture: Joi.string(),
-// });
