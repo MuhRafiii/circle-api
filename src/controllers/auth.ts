@@ -52,13 +52,11 @@ export async function handleLogin(req: Request, res: Response) {
   try {
     const { error } = loginSchema.validate(req.body);
     if (error) {
-      res
-        .status(400)
-        .json({
-          code: 400,
-          status: "error",
-          error: "Invalid login, " + error.message,
-        });
+      res.status(400).json({
+        code: 400,
+        status: "error",
+        error: "Invalid login, " + error.message,
+      });
       return;
     }
 
@@ -77,50 +75,10 @@ export async function handleLogin(req: Request, res: Response) {
       data,
     });
   } catch (err: any) {
-    res
-      .status(400)
-      .json({
-        code: 400,
-        status: "error",
-        message: "Invalid login, " + err.message,
-      });
+    res.status(400).json({
+      code: 400,
+      status: "error",
+      message: "Invalid login, " + err.message,
+    });
   }
 }
-
-// export async function handleUpdateUser(req: Request, res: Response) {
-//   try {
-//     const { error } = updateUserSchema.validate(req.body);
-//     if (error) {
-//       res
-//         .status(400)
-//         .json({ statusCode: 400, status: "error", error: error.message });
-//       return;
-//     }
-
-//     if (!req.file) {
-//       res.status(400).json({
-//         statusCode: 400,
-//         status: "error",
-//         message: "Image is required",
-//       });
-//       return;
-//     }
-
-//     const user = (req as any).user;
-//     const { name } = req.body;
-//     const picture = req.file.filename;
-
-//     const update = await updateUser(user.id, name, picture);
-
-//     res.status(200).json({
-//       statusCode: 200,
-//       status: "success",
-//       message: "User updated successfully",
-//       update,
-//     });
-//   } catch (err: any) {
-//     res
-//       .status(400)
-//       .json({ statusCode: 400, status: "error", message: err.message });
-//   }
-// }
