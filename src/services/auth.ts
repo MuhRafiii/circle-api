@@ -31,8 +31,8 @@ export async function register(
 
   const token = signToken({
     id: user.id,
-    email: user.email,
     username: user.username,
+    name: user.full_name,
   });
 
   return {
@@ -40,6 +40,8 @@ export async function register(
     username,
     name: user.full_name,
     email,
+    avatar: `http://localhost:3000/uploads/${user.photo_profile}`,
+    bio: user.bio,
     token,
   };
 }
@@ -59,8 +61,8 @@ export async function login(identifier: string, password: string) {
 
   const token = signToken({
     id: user.id,
-    email: user.email,
     username: user.username,
+    name: user.full_name,
   });
   return {
     user_id: user.id,
@@ -68,6 +70,7 @@ export async function login(identifier: string, password: string) {
     name: user.full_name,
     email: user.email,
     avatar: `http://localhost:3000/uploads/${user.photo_profile}`,
+    bio: user.bio,
     token,
   };
 }

@@ -31,7 +31,7 @@ model User {
 model Thread {
   id Int @id @default(autoincrement())
   content String
-  image String
+  image String?
   number_of_replies Int?
   created_at DateTime @default(now())
   created_by Int?
@@ -47,7 +47,7 @@ model Reply {
   id Int @id @default(autoincrement())
   user_id Int
   thread_id Int
-  image String
+  image String?
   content String
   created_at DateTime @default(now())
   created_by Int?

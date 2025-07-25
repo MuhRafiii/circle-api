@@ -5,8 +5,8 @@ CREATE TABLE "User" (
     "full_name" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "password" TEXT NOT NULL,
-    "photo_profile" TEXT NOT NULL,
-    "bio" TEXT NOT NULL,
+    "photo_profile" TEXT NOT NULL DEFAULT 'default.png',
+    "bio" TEXT NOT NULL DEFAULT '',
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "created_by" INTEGER,
     "updated_at" TIMESTAMP(3) NOT NULL,
@@ -19,7 +19,7 @@ CREATE TABLE "User" (
 CREATE TABLE "Thread" (
     "id" SERIAL NOT NULL,
     "content" TEXT NOT NULL,
-    "image" TEXT NOT NULL,
+    "image" TEXT,
     "number_of_replies" INTEGER,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "created_by" INTEGER,
@@ -67,6 +67,9 @@ CREATE TABLE "Following" (
 
     CONSTRAINT "Following_pkey" PRIMARY KEY ("id")
 );
+
+-- CreateIndex
+CREATE UNIQUE INDEX "User_username_key" ON "User"("username");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");

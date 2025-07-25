@@ -1,7 +1,20 @@
 import { NextFunction, Request, Response } from "express";
 import { verifyToken } from "../utils/jwt";
 
-export function authenticate(req: Request, res: Response, next: NextFunction) {
+export interface AuthenticatedRequest extends Request {
+  user?: {
+    id: number;
+    username: string;
+    full_name: string;
+    photo_profile: string;
+  };
+}
+
+export function authenticate(
+  req: AuthenticatedRequest,
+  res: Response,
+  next: NextFunction
+) {
   const token = req.cookies.token;
   if (!token) {
     res

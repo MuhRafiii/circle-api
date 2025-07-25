@@ -1,0 +1,1595 @@
+{
+	"info": {
+		"_postman_id": "8def17ee-2b25-4d6a-b03b-6854a227cfe9",
+		"name": "Circle",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "45820475"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "middleware",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000"
+						}
+					},
+					"response": [
+						{
+							"name": "error - unauthorized",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000"
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:5173"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "54"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"36-NE6YtIXtih6cz+H9rzlT8BgzBx8\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 18 Jul 2025 06:18:45 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 401,\n    \"status\": \"error\",\n    \"message\": \"Unauthorized\"\n}"
+						}
+					]
+				},
+				{
+					"name": "register",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"muh_rafi\",\r\n    \"name\":\"Muhammad Rafi\",\r\n    \"email\":\"rafi1@gmail.com\",\r\n    \"password\":\"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "error - space validation",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"mhmmd rafi\",\r\n    \"name\":\"Muhammad Rafi\",\r\n    \"email\":\"rafi@gmail.com\",\r\n    \"password\":\"123456\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/auth/register",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:5173"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "83"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"53-Ck0lrX+pZSKnWRH94GzwF9xUiXc\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 18 Jul 2025 03:20:40 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 400,\n    \"status\": \"error\",\n    \"error\": \"Invalid register, username is not allowed to contain spaces\"\n}"
+						},
+						{
+							"name": "error - input required",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"Muhammad Rafi\",\r\n    \"email\":\"rafi@gmail.com\",\r\n    \"password\":\"123456\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/auth/register",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:5173"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "70"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"46-z7/X018eQWYvsD7u2zPHlQYiuRQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 18 Jul 2025 03:28:28 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 400,\n    \"status\": \"error\",\n    \"error\": \"Invalid register, username is required\"\n}"
+						},
+						{
+							"name": "error - password validation",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"mhmmd_rafi\",\r\n    \"name\":\"Muhammad Rafi\",\r\n    \"email\":\"rafi@gmail.com\",\r\n    \"password\":\"12\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/auth/register",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:5173"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "100"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"64-LOSahcKqZQf102VdWZiTOenCKe4\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 18 Jul 2025 03:30:31 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 400,\n    \"status\": \"error\",\n    \"error\": \"Invalid register, password must be at least 6 characters long\"\n}"
+						},
+						{
+							"name": "success - register",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"muh_rafi\",\r\n    \"name\":\"Muhammad Rafi\",\r\n    \"email\":\"rafi1@gmail.com\",\r\n    \"password\":\"123456\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/auth/register",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:5173"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJyYWZpMUBnbWFpbC5jb20iLCJ1c2VybmFtZSI6Im11aF9yYWZpIiwiaWF0IjoxNzUyODA5ODE5LCJleHAiOjE3NTI4OTYyMTl9.p9YOMzSuxZC7WncSoVMBHKRFDKj5N8SCykYgGYkBgZk; Path=/; HttpOnly; Secure; SameSite=None"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "390"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"186-pkLyK/zRbEo6hWZU24+fmem3Yrw\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 18 Jul 2025 03:36:59 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 201,\n    \"status\": \"success\",\n    \"message\": \"Registrasi berhasil. Akun berhasil dibuat.\",\n    \"data\": {\n        \"user_id\": 2,\n        \"username\": \"muh_rafi\",\n        \"name\": \"Muhammad Rafi\",\n        \"email\": \"rafi1@gmail.com\",\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJyYWZpMUBnbWFpbC5jb20iLCJ1c2VybmFtZSI6Im11aF9yYWZpIiwiaWF0IjoxNzUyODA5ODE5LCJleHAiOjE3NTI4OTYyMTl9.p9YOMzSuxZC7WncSoVMBHKRFDKj5N8SCykYgGYkBgZk\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "login",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"identifier\": \"user@gmail.com\",\r\n    \"password\":\"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success - username login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"identifier\": \"mhmmd_rafi\",\r\n    \"password\":\"123456\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/auth/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:5173"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJyYWZpQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoibWhtbWRfcmFmaSIsImlhdCI6MTc1MjgyMTI2OCwiZXhwIjoxNzUyOTA3NjY4fQ.G7D2A8p88dz8GI9f48oUJ1G0NUkkREltEg922l-xWP8; Max-Age=86400; Path=/; Expires=Sat, 19 Jul 2025 06:47:48 GMT; HttpOnly; Secure; SameSite=None"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "421"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1a5-I59nH3erQFlXvbhWyqjdfISEp2o\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 18 Jul 2025 06:47:48 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 200,\n    \"status\": \"success\",\n    \"message\": \"Login successful.\",\n    \"data\": {\n        \"user_id\": 1,\n        \"username\": \"mhmmd_rafi\",\n        \"name\": \"Muhammad Rafi\",\n        \"email\": \"rafi@gmail.com\",\n        \"avatar\": \"http://localhost:3000/uploads/default.png\",\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJyYWZpQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoibWhtbWRfcmFmaSIsImlhdCI6MTc1MjgyMTI2OCwiZXhwIjoxNzUyOTA3NjY4fQ.G7D2A8p88dz8GI9f48oUJ1G0NUkkREltEg922l-xWP8\"\n    }\n}"
+						},
+						{
+							"name": "success - email login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"identifier\": \"user@gmail.com\",\r\n    \"password\":\"123456\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/auth/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:5173"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJ1c2VyQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoidXNlcm5hbWUiLCJpYXQiOjE3NTI4MjEzODgsImV4cCI6MTc1MjkwNzc4OH0.5RAKMjmonqm6K_RXCH5LDQno1oZlnoY-EyGlPndTdG0; Max-Age=86400; Path=/; Expires=Sat, 19 Jul 2025 06:49:48 GMT; HttpOnly; Secure; SameSite=None"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "407"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"197-WGbigch0pmVs6PFubPCnYDl//2A\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 18 Jul 2025 06:49:48 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 200,\n    \"status\": \"success\",\n    \"message\": \"Login successful.\",\n    \"data\": {\n        \"user_id\": 3,\n        \"username\": \"username\",\n        \"name\": \"user\",\n        \"email\": \"user@gmail.com\",\n        \"avatar\": \"http://localhost:3000/uploads/default.png\",\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJ1c2VyQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoidXNlcm5hbWUiLCJpYXQiOjE3NTI4MjEzODgsImV4cCI6MTc1MjkwNzc4OH0.5RAKMjmonqm6K_RXCH5LDQno1oZlnoY-EyGlPndTdG0\"\n    }\n}"
+						},
+						{
+							"name": "error - user not found",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"identifier\": \"user23@gmail.com\",\r\n    \"password\":\"123456\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/auth/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:5173"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "71"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"47-pMWoWyyGzIlkCz2WVubmFbRFmeM\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 18 Jul 2025 06:50:52 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 400,\n    \"status\": \"error\",\n    \"message\": \"Invalid login, user not found\"\n}"
+						},
+						{
+							"name": "error - wrong password",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"identifier\": \"user3@gmail.com\",\r\n    \"password\":\"12345\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/auth/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:5173"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "71"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"47-7wRwHiMIRn4AodXOojgNj33ATKY\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 18 Jul 2025 06:51:28 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 400,\n    \"status\": \"error\",\n    \"message\": \"Invalid login, wrong password\"\n}"
+						},
+						{
+							"name": "error - required",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"identifier\": \"\",\r\n    \"password\":\"123456\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/auth/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:5173"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "84"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"54-leQL+LoI1ci4qsM9NhXqlMGq+Cc\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 18 Jul 2025 06:56:04 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 400,\n    \"status\": \"error\",\n    \"error\": \"Invalid login, username or email is required\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "thread",
+			"item": [
+				{
+					"name": "getThreads",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/thread",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"thread"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "error - auth middleware",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/thread",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"thread"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:5173"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "54"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"36-NE6YtIXtih6cz+H9rzlT8BgzBx8\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 22 Jul 2025 03:15:03 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 401,\n    \"status\": \"error\",\n    \"message\": \"Unauthorized\"\n}"
+						},
+						{
+							"name": "success - getThreads",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/thread",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"thread"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:5173"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "884"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"374-z1XnrOdd/4U6kBSSpUo0YLaEYh8\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 22 Jul 2025 03:32:41 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 200,\n    \"status\": \"success\",\n    \"message\": \"Get Data Thread Successfully\",\n    \"data\": {\n        \"threads\": [\n            {\n                \"id\": 1,\n                \"content\": \"Lorem ipsum dolor sit amet, consectetur adipisicing elit. A quos error facilis quia ex, sunt repellendus asperiores nostrum doloremque porro. Est, dolor. Laborum nam dolorum commodi in cupiditate cum sapiente?\",\n                \"created_at\": \"2025-07-22T03:06:38.824Z\",\n                \"user\": {\n                    \"id\": 2,\n                    \"username\": \"user2\",\n                    \"name\": \"username2\",\n                    \"profile_picture\": \"default.png\"\n                },\n                \"likes\": 0,\n                \"reply\": 0,\n                \"isLiked\": false\n            },\n            {\n                \"id\": 2,\n                \"content\": \"Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit explicabo consequatur illo adipisci nulla possimus non dolorem beatae nostrum tenetur alias esse laboriosam velit, harum animi vero iste quae dolorum\",\n                \"created_at\": \"2025-07-22T03:06:38.824Z\",\n                \"user\": {\n                    \"id\": 3,\n                    \"username\": \"user3\",\n                    \"name\": \"username3\",\n                    \"profile_picture\": \"default.png\"\n                },\n                \"likes\": 0,\n                \"reply\": 0,\n                \"isLiked\": false\n            }\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "getThreadDetail",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/thread/44",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"thread",
+								"44"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success - get thread detail",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/thread/5",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"thread",
+										"5"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:5173"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "516"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"204-ESVdfbwUXYP+9RMFatJ6VlB0KOQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 23 Jul 2025 06:29:06 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 200,\n    \"status\": \"success\",\n    \"message\": \"Get Data Thread Successfully\",\n    \"data\": {\n        \"id\": 5,\n        \"content\": \"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis esse doloribus facere dolor sunt, consequatur nesciunt sapiente quisquam, nihil eius repudiandae. Officia perspiciatis necessitatibus blanditiis perferendis, ad asperiores beatae temporibus!\",\n        \"user\": {\n            \"id\": 1,\n            \"username\": \"user\",\n            \"name\": \"username\",\n            \"profile_picture\": \"default.png\"\n        },\n        \"created_at\": \"2025-07-22T08:44:45.040Z\",\n        \"likes\": 1,\n        \"replies\": 0,\n        \"isLiked\": true\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "likeThread",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/thread/1/like",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"thread",
+								"1",
+								"like"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success - like",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/thread/1/like",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"thread",
+										"1",
+										"like"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:5173"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "92"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5c-M6fMfS4XRbym5JR0waNyT/1UGsU\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 22 Jul 2025 06:57:00 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 200,\n    \"status\": \"success\",\n    \"message\": \"Thread liked\",\n    \"data\": {\n        \"liked\": true,\n        \"likeCount\": 3\n    }\n}"
+						},
+						{
+							"name": "success - unlike",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/thread/1/like",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"thread",
+										"1",
+										"like"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:5173"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "95"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5f-rRJsC29vKa5Pyz45qxREKYykUr4\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 22 Jul 2025 06:57:38 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 200,\n    \"status\": \"success\",\n    \"message\": \"Thread unliked\",\n    \"data\": {\n        \"liked\": false,\n        \"likeCount\": 2\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "createThread",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "content",
+									"value": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis esse doloribus facere dolor sunt, consequatur nesciunt sapiente quisquam, nihil eius repudiandae. Officia perspiciatis necessitatibus blanditiis perferendis, ad asperiores beatae temporibus!",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/mrafi/Pictures/2.JPG"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/thread/upload",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"thread",
+								"upload"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success - create thread",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "content",
+											"value": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis esse doloribus facere dolor sunt, consequatur nesciunt sapiente quisquam, nihil eius repudiandae. Officia perspiciatis necessitatibus blanditiis perferendis, ad asperiores beatae temporibus!",
+											"type": "text"
+										},
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/C:/Users/mrafi/Pictures/2.JPG"
+										}
+									],
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/thread/upload",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"thread",
+										"upload"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:5173"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "449"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1c1-Vmm2qJvqwXoulgsdIihFfTHgA8M\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 23 Jul 2025 04:40:22 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 201,\n    \"status\": \"success\",\n    \"message\": \"Thread berhasil diposting.\",\n    \"data\": {\n        \"tweet\": {\n            \"id\": 37,\n            \"user_id\": 1,\n            \"content\": \"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis esse doloribus facere dolor sunt, consequatur nesciunt sapiente quisquam, nihil eius repudiandae. Officia perspiciatis necessitatibus blanditiis perferendis, ad asperiores beatae temporibus!\",\n            \"image_url\": \"1753245600690-2.JPG\",\n            \"timestamp\": \"2025-07-23T04:40:06.577Z\"\n        }\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "reply",
+			"item": [
+				{
+					"name": "getRepliesByThread",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/reply?thread_id=5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"reply"
+							],
+							"query": [
+								{
+									"key": "thread_id",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success - get replies by thread",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/reply?thread_id=5",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"reply"
+									],
+									"query": [
+										{
+											"key": "thread_id",
+											"value": "5"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:5173"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "94"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5e-a4RFZbgWCrfX5ZblPDOnZdr7oms\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 23 Jul 2025 07:08:13 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 200,\n    \"status\": \"success\",\n    \"message\": \"Get Data Thread Successfully\",\n    \"data\": {\n        \"replies\": []\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "createReply",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "content",
+									"value": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis esse doloribus facere dolor sunt, consequatur nesciunt sapiente quisquam, nihil eius repudiandae. Officia perspiciatis necessitatibus blanditiis perferendis, ad asperiores beatae temporibus",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": [],
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/reply/upload/124",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"reply",
+								"upload",
+								"124"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success - create reply",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "content",
+											"value": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis esse doloribus facere dolor sunt, consequatur nesciunt sapiente quisquam, nihil eius repudiandae. Officia perspiciatis necessitatibus blanditiis perferendis, ad asperiores beatae temporibus",
+											"type": "text"
+										},
+										{
+											"key": "image",
+											"type": "file",
+											"src": [],
+											"disabled": true
+										}
+									],
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/reply/upload/124",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"reply",
+										"upload",
+										"124"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:5173"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "534"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"216-LmWyvCb4+FScSt/tRuvzwNKeA78\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 24 Jul 2025 22:55:57 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 201,\n    \"status\": \"success\",\n    \"message\": \"Reply berhasil diposting.\",\n    \"data\": {\n        \"id\": 5,\n        \"thread_id\": 124,\n        \"content\": \"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis esse doloribus facere dolor sunt, consequatur nesciunt sapiente quisquam, nihil eius repudiandae. Officia perspiciatis necessitatibus blanditiis perferendis, ad asperiores beatae temporibus\",\n        \"image\": null,\n        \"created_at\": \"2025-07-24T22:55:57.405Z\",\n        \"user\": {\n            \"id\": 1,\n            \"username\": \"user\",\n            \"name\": \"username\",\n            \"profile_picture\": \"http://localhost:3000/uploads/default.png\"\n        }\n    }\n}"
+						}
+					]
+				}
+			]
+		}
+	]
+}
