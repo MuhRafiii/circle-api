@@ -1,6 +1,10 @@
 import { prisma } from "../prisma/client";
 
-export async function getRepliesByThread(threadId: number) {
+export async function getRepliesByThread(
+  threadId: number,
+  page: number = 1,
+  limit: number = 10
+) {
   const replies = await prisma.reply.findMany({
     where: { thread_id: threadId },
     include: {
@@ -14,6 +18,8 @@ export async function getRepliesByThread(threadId: number) {
       },
     },
     orderBy: { created_at: "desc" },
+    skip: (page - 1) * limit,
+    take: limit,
   });
 
   const repliesFormatted = replies.map((reply) => ({

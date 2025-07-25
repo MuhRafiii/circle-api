@@ -1,6 +1,10 @@
 import { prisma } from "../prisma/client";
 
-export async function getThreads(currentUserId: number) {
+export async function getThreads(
+  currentUserId: number,
+  page: number = 1,
+  limit: number = 10
+) {
   const threads = await prisma.thread.findMany({
     include: {
       user: {
@@ -27,6 +31,8 @@ export async function getThreads(currentUserId: number) {
     orderBy: {
       created_at: "desc",
     },
+    skip: (page - 1) * limit,
+    take: limit,
   });
 
   const fullThreads = threads.map((thread) => ({

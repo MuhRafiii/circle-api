@@ -14,6 +14,8 @@ export async function handleGetThreads(
 ) {
   try {
     const currentUserId = req.user?.id;
+    const page = parseInt(req.query.page as string) || 1;
+    const limit = parseInt(req.query.limit as string) || 10;
 
     if (!currentUserId) {
       return res.status(401).json({
@@ -23,7 +25,7 @@ export async function handleGetThreads(
       });
     }
 
-    const data = await getThreads(currentUserId);
+    const data = await getThreads(currentUserId, page, limit);
 
     res.status(200).json({
       code: 200,
