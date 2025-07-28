@@ -78,6 +78,6 @@ model Following {
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 
-  following User @relation("Following", fields: [following_id], references: [id])
-  follower User @relation("Follower", fields: [follower_id], references: [id])
+  following User @relation("Follower", fields: [following_id], references: [id])
+  follower User @relation("Following", fields: [follower_id], references: [id])
 }
