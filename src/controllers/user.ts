@@ -1,6 +1,6 @@
 import { Response } from "express";
 import { AuthenticatedRequest } from "../middlewares/auth";
-import { updateUser } from "../services/user";
+import { deletePhotoProfile, updateUser } from "../services/user";
 import { updateProfileSchema } from "../validations/user";
 
 export async function handleUpdateUser(
@@ -31,6 +31,28 @@ export async function handleUpdateUser(
       status: "error",
       message: err.message,
       error: err,
+    });
+  }
+}
+
+export async function handleDeletePhotoProfile(
+  req: AuthenticatedRequest,
+  res: Response
+) {
+  const userId = req.user!.id;
+  try {
+    const avatar = await deletePhotoProfile(userId);
+    res.status(200).json({
+      code: 200,
+      status: "success",
+      message: "Photo profile deleted",
+      data: avatar,
+    });
+  } catch (error) {
+    res.status(500).json({
+      code: 500,
+      status: "error",
+      message: "Failed to delete photo profile",
     });
   }
 }

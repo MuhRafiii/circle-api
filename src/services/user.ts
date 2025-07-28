@@ -31,3 +31,16 @@ export async function updateUser(
       `http://localhost:3000/uploads/${updatedUser.photo_profile}`,
   };
 }
+
+export async function deletePhotoProfile(userId: number) {
+  const updatedUser = await prisma.user.update({
+    where: { id: userId },
+    data: {
+      photo_profile: "default.png",
+    },
+  });
+
+  return {
+    avatar: `http://localhost:3000/uploads/${updatedUser.photo_profile}`,
+  };
+}
