@@ -56,8 +56,12 @@ export async function login(identifier: string, password: string) {
     },
   });
 
-  const isMatch = await bcrypt.compare(password, user!.password);
-  if (!user || !isMatch) throw new Error("Invalid username or password");
+  if (user) {
+    const isMatch = await bcrypt.compare(password, user!.password);
+    if (!isMatch) throw new Error("Invalid username or password");
+  } else {
+    throw new Error("Invalid username or password");
+  }
 
   const token = signToken({
     id: user.id,

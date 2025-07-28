@@ -8,6 +8,7 @@ import { corsMiddleware } from "./middlewares/cors";
 import authRouter from "./routes/auth";
 import replyRouter from "./routes/reply";
 import threadRouter from "./routes/thread";
+import userRouter from "./routes/user";
 
 dotenv.config();
 
@@ -26,6 +27,7 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use("/auth", authRouter);
 app.use("/thread", threadRouter);
 app.use("/reply", replyRouter);
+app.use("/user", userRouter);
 
 app.set("io", io);
 server.listen(port, () => {

@@ -70,7 +70,7 @@ export async function handleLogin(req: Request, res: Response) {
     res.status(400).json({
       code: 400,
       status: "error",
-      message: "Invalid login, " + err.message,
+      message: err.message,
     });
   }
 }
