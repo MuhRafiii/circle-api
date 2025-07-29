@@ -107,6 +107,7 @@ export async function getFollowing(userId: number) {
     bio: f.following.bio,
     name: f.following.full_name,
     avatar: `http://localhost:3000/uploads/${f.following.photo_profile}`,
+    is_following: true,
   }));
 
   return { following: result };

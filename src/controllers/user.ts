@@ -1,6 +1,11 @@
 import { Response } from "express";
 import { AuthenticatedRequest } from "../middlewares/auth";
-import { deletePhotoProfile, updateUser } from "../services/user";
+import {
+  deletePhotoProfile,
+  followSuggestions,
+  searchUser,
+  updateUser,
+} from "../services/user";
 import { updateProfileSchema } from "../validations/user";
 
 export async function handleUpdateUser(
@@ -39,8 +44,8 @@ export async function handleDeletePhotoProfile(
   req: AuthenticatedRequest,
   res: Response
 ) {
-  const userId = req.user!.id;
   try {
+    const userId = req.user!.id;
     const avatar = await deletePhotoProfile(userId);
     res.status(200).json({
       code: 200,
@@ -53,6 +58,49 @@ export async function handleDeletePhotoProfile(
       code: 500,
       status: "error",
       message: "Failed to delete photo profile",
+    });
+  }
+}
+
+export async function handleSearchUser(
+  req: AuthenticatedRequest,
+  res: Response
+) {
+  try {
+    const { keyword } = req.query;
+    const userId = req.user!.id;
+    const data = await searchUser(userId, keyword as string);
+    res.status(200).json({
+      code: 200,
+      status: "success",
+      data,
+    });
+  } catch (err: any) {
+    res.status(500).json({
+      code: 500,
+      status: "error",
+      message: "Failed to fetch user data. Please try again later.",
+    });
+  }
+}
+
+export async function handleFollowSuggestions(
+  req: AuthenticatedRequest,
+  res: Response
+) {
+  try {
+    const userId = req.user!.id;
+    const data = await followSuggestions(userId);
+    res.status(200).json({
+      code: 200,
+      status: "success",
+      data,
+    });
+  } catch (error) {
+    res.status(500).json({
+      code: 500,
+      status: "error",
+      message: "Failed to fetch user data. Please try again later.",
     });
   }
 }
