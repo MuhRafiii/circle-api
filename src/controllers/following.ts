@@ -20,7 +20,12 @@ export async function handleFollowUser(
     const data = await followUser(followerId, followed_user_id);
 
     const io = req.app.get("io");
-    io.emit("new-follower", { followerId, followerName, followerUsername });
+    io.emit("new-follower", {
+      followerId,
+      followerName,
+      followerUsername,
+      followed_user_id,
+    });
 
     res.status(200).json({
       code: 200,
@@ -48,7 +53,7 @@ export async function handleUnfollowUser(
     const data = await unfollowUser(followerId, followed_id);
 
     const io = req.app.get("io");
-    io.emit("new-unfollower", followerId);
+    io.emit("new-unfollower", { followerId, followed_id });
 
     res.status(200).json({
       code: 200,

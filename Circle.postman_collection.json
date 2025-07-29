@@ -1595,6 +1595,192 @@
 			"name": "user",
 			"item": [
 				{
+					"name": "searchUser",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/user/search?keyword=user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"search"
+							],
+							"query": [
+								{
+									"key": "keyword",
+									"value": "user"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success - search user",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/user/search?keyword=user",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"user",
+										"search"
+									],
+									"query": [
+										{
+											"key": "keyword",
+											"value": "user"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:5173"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "369"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"171-EugJNhDKv+g4lrGgJspE57Gtuls\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 29 Jul 2025 03:58:40 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 200,\n    \"status\": \"success\",\n    \"data\": {\n        \"users\": [\n            {\n                \"id\": \"2\",\n                \"username\": \"user2\",\n                \"name\": \"username2\",\n                \"bio\": \"lalalalala...\",\n                \"avatar\": \"http://localhost:3000/uploads/default.png\",\n                \"followers\": 0,\n                \"is_following\": false\n            },\n            {\n                \"id\": \"3\",\n                \"username\": \"user3\",\n                \"name\": \"username3\",\n                \"bio\": \"lelelelelele...\",\n                \"avatar\": \"http://localhost:3000/uploads/default.png\",\n                \"followers\": 1,\n                \"is_following\": true\n            }\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "followSuggestions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/user/suggestions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"suggestions"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success - get follow suggestions",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/user/suggestions",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"user",
+										"suggestions"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:5173"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "780"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"30c-86FpZeHFbBla1xQdgeAGVjUOOTM\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 29 Jul 2025 07:53:52 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 200,\n    \"status\": \"success\",\n    \"data\": {\n        \"users\": [\n            {\n                \"id\": \"4\",\n                \"username\": \"user4\",\n                \"name\": \"username4\",\n                \"bio\": \"\",\n                \"avatar\": \"http://localhost:3000/uploads/default.png\",\n                \"followers\": 2,\n                \"is_following\": false\n            },\n            {\n                \"id\": \"7\",\n                \"username\": \"user7\",\n                \"name\": \"username7\",\n                \"bio\": \"\",\n                \"avatar\": \"http://localhost:3000/uploads/default.png\",\n                \"followers\": 0,\n                \"is_following\": false\n            },\n            {\n                \"id\": \"8\",\n                \"username\": \"username\",\n                \"name\": \"user\",\n                \"bio\": \"\",\n                \"avatar\": \"http://localhost:3000/uploads/default.png\",\n                \"followers\": 3,\n                \"is_following\": false\n            },\n            {\n                \"id\": \"10\",\n                \"username\": \"username3\",\n                \"name\": \"user3\",\n                \"bio\": \"\",\n                \"avatar\": \"http://localhost:3000/uploads/default.png\",\n                \"followers\": 5,\n                \"is_following\": false\n            },\n            {\n                \"id\": \"11\",\n                \"username\": \"username4\",\n                \"name\": \"user4\",\n                \"bio\": \"\",\n                \"avatar\": \"http://localhost:3000/uploads/default.png\",\n                \"followers\": 2,\n                \"is_following\": false\n            }\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
 					"name": "updateProfile",
 					"request": {
 						"method": "PATCH",
@@ -2034,7 +2220,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"code\": 200,\n    \"status\": \"success\",\n    \"data\": {\n        \"following\": [\n            {\n                \"id\": \"3\",\n                \"username\": \"user3\",\n                \"bio\": \"lelelelelele...\",\n                \"name\": \"username3\",\n                \"avatar\": \"http://localhost:3000/uploads/default.png\"\n            }\n        ]\n    }\n}"
+							"body": "{\n    \"code\": 200,\n    \"status\": \"success\",\n    \"data\": {\n        \"following\": [\n            {\n                \"id\": \"4\",\n                \"username\": \"user4\",\n                \"bio\": \"\",\n                \"name\": \"username4\",\n                \"avatar\": \"http://localhost:3000/uploads/default.png\",\n                \"is_following\": true\n            },\n            {\n                \"id\": \"7\",\n                \"username\": \"user7\",\n                \"bio\": \"\",\n                \"name\": \"username7\",\n                \"avatar\": \"http://localhost:3000/uploads/default.png\",\n                \"is_following\": true\n            },\n            {\n                \"id\": \"8\",\n                \"username\": \"username\",\n                \"bio\": \"\",\n                \"name\": \"user\",\n                \"avatar\": \"http://localhost:3000/uploads/default.png\",\n                \"is_following\": true\n            },\n            {\n                \"id\": \"2\",\n                \"username\": \"user2\",\n                \"bio\": \"lalalalala...\",\n                \"name\": \"username2\",\n                \"avatar\": \"http://localhost:3000/uploads/default.png\",\n                \"is_following\": true\n            },\n            {\n                \"id\": \"9\",\n                \"username\": \"username2\",\n                \"bio\": \"\",\n                \"name\": \"user2\",\n                \"avatar\": \"http://localhost:3000/uploads/default.png\",\n                \"is_following\": true\n            },\n            {\n                \"id\": \"11\",\n                \"username\": \"username4\",\n                \"bio\": \"\",\n                \"name\": \"user4\",\n                \"avatar\": \"http://localhost:3000/uploads/default.png\",\n                \"is_following\": true\n            },\n            {\n                \"id\": \"10\",\n                \"username\": \"username3\",\n                \"bio\": \"\",\n                \"name\": \"user3\",\n                \"avatar\": \"http://localhost:3000/uploads/default.png\",\n                \"is_following\": true\n            }\n        ]\n    }\n}"
 						},
 						{
 							"name": "success - get followers",
