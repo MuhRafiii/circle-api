@@ -17,7 +17,7 @@ dotenv.config();
 const app = express();
 const server = createServer(app);
 const io = new Server(server, {
-  cors: { origin: "http://localhost:5173", credentials: true },
+  cors: { origin: "https://circle-dumbways.vercel.app/", credentials: true },
 });
 const port = process.env.PORT;
 setupSwagger(app);
