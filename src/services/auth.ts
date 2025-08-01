@@ -54,6 +54,14 @@ export async function login(identifier: string, password: string) {
         { email: identifier.toLowerCase().trim() },
       ],
     },
+    include: {
+      _count: {
+        select: {
+          following: true,
+          followers: true,
+        },
+      },
+    },
   });
 
   if (user) {
@@ -75,6 +83,8 @@ export async function login(identifier: string, password: string) {
     email: user.email,
     avatar: `http://localhost:3000/uploads/${user.photo_profile}`,
     bio: user.bio,
+    following: user._count.following,
+    followers: user._count.followers,
     token,
   };
 }
