@@ -40,7 +40,7 @@ export async function register(
     username,
     name: user.full_name,
     email,
-    avatar: `https://circle-api-production-2c82.up.railway.app/uploads/${user.photo_profile}`,
+    avatar: user.photo_profile,
     bio: user.bio,
     token,
   };
@@ -81,7 +81,7 @@ export async function login(identifier: string, password: string) {
     username: user.username,
     name: user.full_name,
     email: user.email,
-    avatar: `https://circle-api-production-2c82.up.railway.app/uploads/${user.photo_profile}`,
+    avatar: user.photo_profile,
     bio: user.bio,
     following: user._count.following,
     followers: user._count.followers,

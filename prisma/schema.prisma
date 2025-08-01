@@ -13,7 +13,7 @@ model User {
   full_name String
   email String @unique
   password String
-  photo_profile String @default("default.png")
+  photo_profile String @default("https://res.cloudinary.com/dxlevzn3n/image/upload/v1754074668/default_pmdws2.png")
   bio String @default("")
   created_at DateTime @default(now())
   created_by Int?

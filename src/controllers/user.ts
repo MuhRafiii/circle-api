@@ -22,7 +22,7 @@ export async function handleUpdateUser(
     }
 
     const updates = req.body;
-    const avatar = req.file?.filename;
+    const avatar = req.file?.path;
     const updatedUser = await updateUser(userId!, updates, avatar);
     return res.status(200).json({
       code: 200,

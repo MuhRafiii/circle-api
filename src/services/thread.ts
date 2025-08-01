@@ -37,9 +37,7 @@ export async function getThreads(
 
   const fullThreads = threads.map((thread) => ({
     ...thread,
-    image:
-      thread.image &&
-      `https://circle-api-production-2c82.up.railway.app/uploads/${thread.image}`,
+    image: thread.image && thread.image,
   }));
 
   const formattedThreads = fullThreads.map((thread) => ({
@@ -51,7 +49,7 @@ export async function getThreads(
       id: thread.user?.id,
       username: thread.user?.username,
       name: thread.user?.full_name,
-      profile_picture: `https://circle-api-production-2c82.up.railway.app/uploads/${thread.user?.photo_profile}`,
+      profile_picture: thread.user?.photo_profile,
     },
     likes: thread._count.likes,
     replies: thread._count.replies,
@@ -91,14 +89,12 @@ export async function getThreadDetail(id: number, currentUserId: number) {
   const threadDetail = {
     id: thread?.id,
     content: thread?.content,
-    image:
-      thread?.image &&
-      `https://circle-api-production-2c82.up.railway.app/uploads/${thread?.image}`,
+    image: thread?.image && thread?.image,
     user: {
       id: thread?.user?.id,
       username: thread?.user?.username,
       name: thread?.user?.full_name,
-      profile_picture: `https://circle-api-production-2c82.up.railway.app/uploads/${thread?.user?.photo_profile}`,
+      profile_picture: thread?.user?.photo_profile,
     },
     created_at: thread?.created_at,
     likes: thread?._count.likes,
@@ -132,17 +128,13 @@ export async function createThread(
   const tweet = {
     id: thread.id,
     content: thread.content,
-    image:
-      thread.image &&
-      `https://circle-api-production-2c82.up.railway.app/uploads/${thread.image}`,
+    image: thread.image && thread.image,
     created_at: thread.created_at,
     user: {
       id: user!.id,
       username: user!.username,
       name: user!.full_name,
-      profile_picture: `https://circle-api-production-2c82.up.railway.app/uploads/${
-        user!.photo_profile
-      }`,
+      profile_picture: user!.photo_profile,
     },
     likes: 0,
     replies: 0,

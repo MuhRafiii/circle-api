@@ -90,7 +90,7 @@ export async function handleCreateThread(
       return;
     }
 
-    const image = req.file ? req.file.filename : null;
+    const image = req.file ? req.file.path : null;
 
     // Message Queue
     if (image) {
