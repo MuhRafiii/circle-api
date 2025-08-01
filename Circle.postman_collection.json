@@ -1372,7 +1372,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/reply?thread_id=5",
+							"raw": "http://localhost:3000/reply?thread_id=124",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1384,7 +1384,7 @@
 							"query": [
 								{
 									"key": "thread_id",
-									"value": "5"
+									"value": "124"
 								}
 							]
 						}
@@ -1485,7 +1485,7 @@
 							]
 						},
 						"url": {
-							"raw": "http://localhost:3000/reply/upload/124",
+							"raw": "http://localhost:3000/reply/upload?thread_id=124",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1493,8 +1493,13 @@
 							"port": "3000",
 							"path": [
 								"reply",
-								"upload",
-								"124"
+								"upload"
+							],
+							"query": [
+								{
+									"key": "thread_id",
+									"value": "124"
+								}
 							]
 						}
 					},
