@@ -17,7 +17,7 @@
     "skipLibCheck": true,
 
     /* Testing */
-    "types": ["node", "jest"],
+    "types": ["node"],
     "outDir": "./dist"
   }
 }
