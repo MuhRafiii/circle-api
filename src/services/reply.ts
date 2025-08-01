@@ -25,12 +25,14 @@ export async function getRepliesByThread(
   const repliesFormatted = replies.map((reply) => ({
     id: reply.id,
     content: reply.content,
-    image: reply.image && `http://localhost:3000/uploads/${reply.image}`,
+    image:
+      reply.image &&
+      `https://circle-api-production-2c82.up.railway.app/uploads/${reply.image}`,
     user: {
       id: reply.user.id,
       username: reply.user.username,
       name: reply.user.full_name,
-      profile_picture: `http://localhost:3000/uploads/${reply.user.photo_profile}`,
+      profile_picture: `https://circle-api-production-2c82.up.railway.app/uploads/${reply.user.photo_profile}`,
     },
     created_at: reply.created_at,
   }));
@@ -65,13 +67,17 @@ export async function createReply(
     id: reply.id,
     thread_id: reply.thread_id,
     content: reply.content,
-    image: reply.image && `http://localhost:3000/uploads/${reply.image}`,
+    image:
+      reply.image &&
+      `https://circle-api-production-2c82.up.railway.app/uploads/${reply.image}`,
     created_at: reply.created_at,
     user: {
       id: user!.id,
       username: user!.username,
       name: user!.full_name,
-      profile_picture: `http://localhost:3000/uploads/${user!.photo_profile}`,
+      profile_picture: `https://circle-api-production-2c82.up.railway.app/uploads/${
+        user!.photo_profile
+      }`,
     },
   };
 

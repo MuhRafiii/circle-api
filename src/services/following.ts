@@ -84,7 +84,7 @@ export async function getFollowers(userId: number) {
         username: f.follower.username,
         name: f.follower.full_name,
         bio: f.follower.bio,
-        avatar: `http://localhost:3000/uploads/${f.follower.photo_profile}`,
+        avatar: `https://circle-api-production-2c82.up.railway.app/uploads/${f.follower.photo_profile}`,
         is_following: Boolean(isFollowing),
       };
     })
@@ -106,7 +106,7 @@ export async function getFollowing(userId: number) {
     username: f.following.username,
     bio: f.following.bio,
     name: f.following.full_name,
-    avatar: `http://localhost:3000/uploads/${f.following.photo_profile}`,
+    avatar: `https://circle-api-production-2c82.up.railway.app/uploads/${f.following.photo_profile}`,
     is_following: true,
   }));
 

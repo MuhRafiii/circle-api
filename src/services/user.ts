@@ -28,7 +28,7 @@ export async function updateUser(
     bio: updatedUser.bio,
     avatar:
       updatedUser.photo_profile &&
-      `http://localhost:3000/uploads/${updatedUser.photo_profile}`,
+      `https://circle-api-production-2c82.up.railway.app/uploads/${updatedUser.photo_profile}`,
   };
 }
 
@@ -41,7 +41,7 @@ export async function deletePhotoProfile(userId: number) {
   });
 
   return {
-    avatar: `http://localhost:3000/uploads/${updatedUser.photo_profile}`,
+    avatar: `https://circle-api-production-2c82.up.railway.app/uploads/${updatedUser.photo_profile}`,
   };
 }
 
@@ -77,7 +77,7 @@ export async function searchUser(userId: number, keyword: string) {
         username: user.username,
         name: user.full_name,
         bio: user.bio,
-        avatar: `http://localhost:3000/uploads/${user.photo_profile}`,
+        avatar: `https://circle-api-production-2c82.up.railway.app/uploads/${user.photo_profile}`,
         followers: user._count.followers,
         is_following: Boolean(isFollowing),
       };
@@ -117,7 +117,7 @@ export async function followSuggestions(userId: number) {
         username: user.username,
         name: user.full_name,
         bio: user.bio,
-        avatar: `http://localhost:3000/uploads/${user.photo_profile}`,
+        avatar: `https://circle-api-production-2c82.up.railway.app/uploads/${user.photo_profile}`,
         followers: user._count.followers,
         is_following: Boolean(isFollowing),
       };
