@@ -42,6 +42,8 @@ export async function register(
     email,
     avatar: user.photo_profile,
     bio: user.bio,
+    following: 0,
+    followers: 0,
     token,
   };
 }
