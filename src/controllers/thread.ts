@@ -6,7 +6,6 @@ import {
   getThreads,
   likeThread,
 } from "../services/thread";
-import { cloudinary } from "../utils/cloudinary";
 import { publishToQueue } from "../utils/queue";
 
 export async function handleGetThreads(
@@ -91,14 +90,7 @@ export async function handleCreateThread(
       return;
     }
 
-    let image: string | null = null;
-
-    if (req.file) {
-      const result = await cloudinary.uploader.upload(req.file.path, {
-        folder: "circle-app-images",
-      });
-      image = result.secure_url;
-    }
+    const image = req.file ? req.file.path : null;
 
     // Message Queue
     if (image) {

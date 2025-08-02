@@ -1,7 +1,6 @@
 import { Response } from "express";
 import { AuthenticatedRequest } from "../middlewares/auth";
 import { createReply, getRepliesByThread } from "../services/reply";
-import { cloudinary } from "../utils/cloudinary";
 import { publishToQueue } from "../utils/queue";
 import { redis } from "../utils/redis";
 
@@ -69,14 +68,7 @@ export async function handleCreateReply(
       return;
     }
 
-    let image: string | null = null;
-
-    if (req.file) {
-      const result = await cloudinary.uploader.upload(req.file.path, {
-        folder: "circle-app-images",
-      });
-      image = result.secure_url;
-    }
+    const image = req.file ? req.file.path : null;
 
     // Message Queue
     if (image) {
