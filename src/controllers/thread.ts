@@ -90,6 +90,8 @@ export async function handleCreateThread(
       return;
     }
 
+    console.log("REQ FILE:", req.file);
+
     const image = req.file?.path ?? null;
 
     // Message Queue
@@ -113,6 +115,7 @@ export async function handleCreateThread(
       data: tweet,
     });
   } catch (err: any) {
+    console.error("CREATE THREAD ERROR:", err);
     res.status(500).json({
       code: 500,
       status: "error",
