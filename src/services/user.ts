@@ -34,7 +34,8 @@ export async function deletePhotoProfile(userId: number) {
   const updatedUser = await prisma.user.update({
     where: { id: userId },
     data: {
-      photo_profile: "default.png",
+      photo_profile:
+        "https://res.cloudinary.com/dxlevzn3n/image/upload/v1754074668/default_pmdws2.png",
     },
   });
 

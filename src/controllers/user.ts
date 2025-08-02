@@ -6,6 +6,7 @@ import {
   searchUser,
   updateUser,
 } from "../services/user";
+import { cloudinary } from "../utils/cloudinary";
 import { updateProfileSchema } from "../validations/user";
 
 export async function handleUpdateUser(
@@ -21,8 +22,16 @@ export async function handleUpdateUser(
         .json({ code: 400, status: "error", message: error.message });
     }
 
+    let avatar;
+
+    if (req.file) {
+      const result = await cloudinary.uploader.upload(req.file.path, {
+        folder: "circle-app-images",
+      });
+      avatar = result.secure_url;
+    }
+
     const updates = req.body;
-    const avatar = req.file?.path;
     const updatedUser = await updateUser(userId!, updates, avatar);
     return res.status(200).json({
       code: 200,
