@@ -9,6 +9,14 @@ export async function updateUser(
   },
   avatar?: string
 ) {
+  const user = await prisma.user.findUnique({
+    where: { username: updates.username },
+  });
+
+  if (user) {
+    throw new Error("username already exists");
+  }
+
   const updatedUser = await prisma.user.update({
     where: { id: userId },
     data: {
