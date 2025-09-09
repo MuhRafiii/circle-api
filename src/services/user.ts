@@ -13,7 +13,7 @@ export async function updateUser(
     where: { id: userId },
     data: {
       photo_profile: avatar,
-      username: updates.username,
+      username: updates.username?.toLowerCase(),
       full_name: updates.name,
       bio: updates.bio,
       updated_by: userId,
