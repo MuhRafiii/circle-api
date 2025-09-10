@@ -2,28 +2,24 @@ import { prisma } from "../prisma/client";
 
 export async function updateUser(
   userId: number,
-  updates: {
-    username?: string;
-    name?: string;
-    bio?: string;
-  },
+  username?: string,
+  name?: string,
+  bio?: string,
   avatar?: string
 ) {
   const user = await prisma.user.findUnique({
-    where: { username: updates.username },
+    where: { username: username },
   });
 
-  if (user) {
-    throw new Error("username already exists");
-  }
+  if (user && user.id !== userId) throw new Error("Username already exists!");
 
   const updatedUser = await prisma.user.update({
     where: { id: userId },
     data: {
       photo_profile: avatar,
-      username: updates.username?.toLowerCase(),
-      full_name: updates.name,
-      bio: updates.bio,
+      username: username?.toLowerCase(),
+      full_name: name,
+      bio: bio,
       updated_by: userId,
     },
   });

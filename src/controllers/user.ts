@@ -21,9 +21,9 @@ export async function handleUpdateUser(
         .json({ code: 400, status: "error", message: error.message });
     }
 
-    const updates = req.body;
+    const { username, name, bio } = req.body;
     const avatar = req.file?.path;
-    const updatedUser = await updateUser(userId!, updates, avatar);
+    const updatedUser = await updateUser(userId!, username, name, bio, avatar);
     return res.status(200).json({
       code: 200,
       status: "success",
