@@ -15,7 +15,12 @@ export function authenticate(
   res: Response,
   next: NextFunction
 ) {
-  const token = req.cookies.token;
+  let token = req.cookies.token;
+
+  if (!token) {
+    token = req.headers.authorization?.split(" ")[1];
+  }
+
   if (!token) {
     res
       .status(401)
@@ -25,7 +30,7 @@ export function authenticate(
 
   try {
     const decoded = verifyToken(token);
-    (req as any).user = decoded as any;
+    req.user = decoded as any;
     next();
   } catch {
     res
