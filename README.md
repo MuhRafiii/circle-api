@@ -2,8 +2,7 @@
 
 📘 Deskripsi
 
-Circle API adalah backend RESTful API untuk aplikasi Circle.
-Dibangun menggunakan Express.js dan Prisma ORM dengan pendekatan Clean Architecture, API ini menangani autentikasi, manajemen thread, reply, like, follow, serta integrasi real-time melalui WebSocket dan message queue.
+Circle API adalah backend RESTful API untuk aplikasi Circle. Dibangun menggunakan Express.js dan Prisma ORM dengan pendekatan Clean Architecture, API ini menangani autentikasi, manajemen thread, reply, like, follow, serta integrasi real-time melalui WebSocket dan message queue.
 
 🚀 Tech Stack
 - Express.js — web framework backend
@@ -33,21 +32,14 @@ Dibangun menggunakan Express.js dan Prisma ORM dengan pendekatan Clean Architect
 
 💻 Fitur Utama
 
-✅ Register & Login (JWT Auth)
-
-✅ CRUD Thread (Text + Gambar)
-
-✅ Like & Reply System
-
-✅ Follow & Unfollow User
-
-✅ WebSocket untuk notifikasi thread baru
-
-✅ Message Queue untuk pemrosesan gambar
-
-✅ Redis Caching pada endpoint “My Tweet”
-
-✅ Swagger Documentation & Unit Testing
+✅ Register & Login (JWT Auth)  
+✅ CRUD Thread (Text + Gambar)  
+✅ Like & Reply System  
+✅ Follow & Unfollow User  
+✅ WebSocket untuk notifikasi thread baru  
+✅ Message Queue untuk pemrosesan gambar  
+✅ Redis Caching pada endpoint “My Tweet”  
+✅ Swagger Documentation & Unit Testing  
 
 ⚙️ Cara Menjalankan Project
 <pre>
@@ -73,10 +65,8 @@ Server berjalan di:
 
 API ini dideploy di Railway dan digunakan oleh frontend Circle UI di Vercel.
 
-✨ Kontributor
-
-👤 Muhammad Rafi
-
-📧 mrafi0603@gmail.com
+✨ Kontributor  
+👤 Muhammad Rafi  
+📧 mrafi0603@gmail.com  
 
 🚀 Dibuat sebagai bagian dari proyek Dumbways Bootcamp Stage 2
