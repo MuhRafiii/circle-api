@@ -1,14 +1,82 @@
-Circle App - Backend
+🟣 circle-api (Backend)
 
-Day 9: Search - List User
+📘 Deskripsi
 
-- User search by name
-- User search by username
+Circle API adalah backend RESTful API untuk aplikasi Circle.
+Dibangun menggunakan Express.js dan Prisma ORM dengan pendekatan Clean Architecture, API ini menangani autentikasi, manajemen thread, reply, like, follow, serta integrasi real-time melalui WebSocket dan message queue.
 
-Workflow:
+🚀 Tech Stack
+- Express.js — web framework backend
+- Prisma ORM — manajemen database PostgreSQL
+- JWT (JSON Web Token) — autentikasi
+- Multer / Cloudinary — upload & penyimpanan gambar
+- Redis — caching untuk endpoint tertentu
+- Swagger — dokumentasi API
+- Railway — deployment backend
 
-1. Pengguna memasukkan kueri pencarian (search query) ke dalam kotak pencarian.
-2. Ketika pengguna menekan tombol "Cari" atau menekan tombol "Enter", aplikasi akan mengirim permintaan (request) ke server untuk mencari pengguna berdasarkan kueri yang dimasukkan.
-3. Server akan memproses permintaan pencarian dan mengambil data pengguna yang sesuai dengan kueri pencarian.
-4. Jika ada pengguna yang cocok dengan kueri pencarian, server akan mengirimkan respon yang berisi data pengguna yang ditemukan.
-5. Aplikasi klien (frontend) akan menerima respon dari server dan menampilkan daftar pengguna yang sesuai dengan hasil pencarian.
+📁 Struktur Folder
+<pre>
+  circle-api/
+  │
+  ├── src/
+  │   ├── controllers/     # Request handler
+  │   ├── services/        # Business logic (akses Prisma)
+  │   ├── middlewares/     # Auth, error handler, dll
+  │   ├── routes/          # Routing modular per fitur
+  │   ├── validations/     # Validasi Joi
+  │   ├── utils/           # Helper & JWT functions
+  │   ├── prisma/          # Schema & client Prisma
+  │   └── app.ts           # Entry point utama
+  │
+  └── package.json
+</pre>
+
+💻 Fitur Utama
+
+✅ Register & Login (JWT Auth)
+
+✅ CRUD Thread (Text + Gambar)
+
+✅ Like & Reply System
+
+✅ Follow & Unfollow User
+
+✅ WebSocket untuk notifikasi thread baru
+
+✅ Message Queue untuk pemrosesan gambar
+
+✅ Redis Caching pada endpoint “My Tweet”
+
+✅ Swagger Documentation & Unit Testing
+
+⚙️ Cara Menjalankan Project
+<pre>
+  # Clone repository
+  git clone https://github.com/username/circle-api.git
+  cd circle-api
+  
+  # Install dependencies
+  npm install
+  
+  # Jalankan Prisma
+  npx prisma generate
+  npx prisma migrate dev
+
+  # Jalankan server
+  npm run dev
+</pre>
+
+Server berjalan di:
+👉 http://localhost:3000/api/v1
+
+🌐 Deployment
+
+API ini dideploy di Railway dan digunakan oleh frontend Circle UI di Vercel.
+
+✨ Kontributor
+
+👤 Muhammad Rafi
+
+📧 mrafi0603@gmail.com
+
+🚀 Dibuat sebagai bagian dari proyek Dumbways Bootcamp Stage 2
