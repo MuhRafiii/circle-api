@@ -5,14 +5,8 @@ export async function updateUser(
   username?: string,
   name?: string,
   bio?: string,
-  avatar?: string
+  avatar?: string,
 ) {
-  const user = await prisma.user.findUnique({
-    where: { username: username },
-  });
-
-  if (user && user.id !== userId) throw new Error("Username already exists!");
-
   const updatedUser = await prisma.user.update({
     where: { id: userId },
     data: {
@@ -84,7 +78,7 @@ export async function searchUser(userId: number, keyword: string) {
         followers: user._count.followers,
         is_following: Boolean(isFollowing),
       };
-    })
+    }),
   );
 
   return { users: result };
@@ -124,7 +118,7 @@ export async function followSuggestions(userId: number) {
         followers: user._count.followers,
         is_following: Boolean(isFollowing),
       };
-    })
+    }),
   );
 
   const suggestions = result.filter((user) => !user.is_following).slice(0, 5);

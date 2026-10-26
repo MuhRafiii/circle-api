@@ -5,6 +5,7 @@ import { createServer } from "http";
 import path from "path";
 import { Server } from "socket.io";
 import { corsMiddleware } from "./middlewares/cors";
+import { errorHandler } from "./middlewares/errorHandler";
 import authRouter from "./routes/auth";
 import followingRouter from "./routes/following";
 import replyRouter from "./routes/reply";
@@ -32,6 +33,8 @@ app.use("/thread", threadRouter);
 app.use("/reply", replyRouter);
 app.use("/user", userRouter);
 app.use("/following", followingRouter);
+
+app.use(errorHandler);
 
 app.set("io", io);
 server.listen(port, () => {

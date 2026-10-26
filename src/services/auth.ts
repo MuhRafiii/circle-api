@@ -6,21 +6,11 @@ export async function register(
   username: string,
   name: string,
   email: string,
-  password: string
+  password: string,
 ) {
-  let user = await prisma.user.findUnique({ where: { email: email } });
-  if (user) {
-    throw new Error("email already used");
-  }
-
-  user = await prisma.user.findUnique({ where: { username: username } });
-  if (user) {
-    throw new Error("username already exists");
-  }
-
   const hashedPassword = await bcrypt.hash(password, 10);
 
-  user = await prisma.user.create({
+  const user = await prisma.user.create({
     data: {
       username: username.toLowerCase(),
       full_name: name,
@@ -68,9 +58,10 @@ export async function login(identifier: string, password: string) {
 
   if (user) {
     const isMatch = await bcrypt.compare(password, user!.password);
-    if (!isMatch) throw new Error("Invalid username or password");
+    if (!isMatch)
+      throw { status: 401, message: "Invalid username or password" };
   } else {
-    throw new Error("Invalid username or password");
+    throw { status: 401, message: "Invalid username or password" };
   }
 
   const token = signToken({

@@ -1,4 +1,4 @@
-import { Response } from "express";
+import { NextFunction, Response } from "express";
 import { AuthenticatedRequest } from "../middlewares/auth";
 import {
   createThread,
@@ -10,7 +10,8 @@ import { publishToQueue } from "../utils/queue";
 
 export async function handleGetThreads(
   req: AuthenticatedRequest,
-  res: Response
+  res: Response,
+  next: NextFunction,
 ) {
   try {
     const currentUserId = req.user?.id;
@@ -18,11 +19,7 @@ export async function handleGetThreads(
     const limit = parseInt(req.query.limit as string) || 10;
 
     if (!currentUserId) {
-      return res.status(401).json({
-        code: 401,
-        status: "unauthorized",
-        message: "User is not authenticated",
-      });
+      throw { status: 401, message: "User is not authenticated" };
     }
 
     const data = await getThreads(currentUserId, page, limit);
@@ -33,28 +30,21 @@ export async function handleGetThreads(
       message: "Get Data Thread Successfully",
       data,
     });
-  } catch (err: any) {
-    res.status(400).json({
-      code: 400,
-      status: "error",
-      message: err.message,
-    });
+  } catch (err) {
+    next(err);
   }
 }
 
 export async function handleGetThreadDetail(
   req: AuthenticatedRequest,
-  res: Response
+  res: Response,
+  next: NextFunction,
 ) {
   try {
     const { id } = req.params;
     const currentUserId = req.user?.id;
     if (!currentUserId) {
-      return res.status(401).json({
-        code: 401,
-        status: "unauthorized",
-        message: "User is not authenticated",
-      });
+      throw { status: 401, message: "User is not authenticated" };
     }
     const data = await getThreadDetail(Number(id), currentUserId);
 
@@ -64,30 +54,22 @@ export async function handleGetThreadDetail(
       message: "Get Data Thread Successfully",
       data,
     });
-  } catch (err: any) {
-    res.status(400).json({
-      code: 400,
-      status: "error",
-      message: err.message,
-    });
+  } catch (err) {
+    next(err);
   }
 }
 
 export async function handleCreateThread(
   req: AuthenticatedRequest,
-  res: Response
+  res: Response,
+  next: NextFunction,
 ) {
   try {
     const userId = req.user!.id;
     const { content } = req.body;
 
     if (!content && !req.file) {
-      res.status(400).json({
-        code: 400,
-        status: "error",
-        message: "Content or image is required",
-      });
-      return;
+      throw { status: 400, message: "Content or image is required" };
     }
 
     console.log("REQ FILE:", req.file);
@@ -114,30 +96,23 @@ export async function handleCreateThread(
       message: "Thread berhasil diposting.",
       data: tweet,
     });
-  } catch (err: any) {
+  } catch (err) {
     console.error("CREATE THREAD ERROR:", err);
-    res.status(500).json({
-      code: 500,
-      status: "error",
-      message: err.message || "Internal server error",
-    });
+    next(err);
   }
 }
 
 export async function handleLikeThread(
   req: AuthenticatedRequest,
-  res: Response
+  res: Response,
+  next: NextFunction,
 ) {
   try {
     const threadId = Number(req.params.id);
     const userId = req.user?.id;
 
     if (!userId) {
-      return res.status(401).json({
-        code: 401,
-        status: "error",
-        message: "Unauthorized",
-      });
+      throw { status: 401, message: "User is not authenticated" };
     }
 
     const result = await likeThread(userId, threadId);
@@ -148,11 +123,7 @@ export async function handleLikeThread(
       message: result.liked ? "Thread liked" : "Thread unliked",
       data: result,
     });
-  } catch (err: any) {
-    res.status(400).json({
-      code: 400,
-      status: "error",
-      message: err.message,
-    });
+  } catch (err) {
+    next(err);
   }
 }

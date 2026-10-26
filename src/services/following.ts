@@ -14,8 +14,8 @@ export async function followUser(followerId: number, followedId: number) {
     }),
   ]);
 
-  if (followed === follower) throw new Error("You cannot follow yourself");
-  if (!followed) throw new Error("User not found");
+  if (followed === follower)
+    throw { status: 401, message: "You cannot follow yourself" };
 
   const existingFollowing = await prisma.following.findFirst({
     where: {
@@ -24,7 +24,8 @@ export async function followUser(followerId: number, followedId: number) {
     },
   });
 
-  if (existingFollowing) throw new Error("You are already following this user");
+  if (existingFollowing)
+    throw { status: 401, message: "You are already following this user" };
 
   await prisma.following.create({
     data: {
@@ -40,15 +41,6 @@ export async function followUser(followerId: number, followedId: number) {
 }
 
 export async function unfollowUser(followerId: number, followedId: number) {
-  const existingFollowing = await prisma.following.findFirst({
-    where: {
-      follower_id: followerId,
-      following_id: followedId,
-    },
-  });
-
-  if (!existingFollowing) throw new Error("You are not following this user");
-
   await prisma.following.deleteMany({
     where: {
       follower_id: followerId,
@@ -87,7 +79,7 @@ export async function getFollowers(userId: number) {
         avatar: f.follower.photo_profile,
         is_following: Boolean(isFollowing),
       };
-    })
+    }),
   );
 
   return { followers: result };

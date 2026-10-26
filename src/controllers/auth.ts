@@ -1,17 +1,16 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import { login, register } from "../services/auth";
 import { loginSchema, registerSchema } from "../validations/auth";
 
-export async function handleRegister(req: Request, res: Response) {
+export async function handleRegister(
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) {
   try {
     const { error } = registerSchema.validate(req.body);
     if (error) {
-      res.status(400).json({
-        code: 400,
-        status: "error",
-        error: "Invalid register, " + error.message,
-      });
-      return;
+      return next(error);
     }
 
     const { username, name, email, password } = req.body;
@@ -31,29 +30,29 @@ export async function handleRegister(req: Request, res: Response) {
       message: "Registrasi berhasil. Akun berhasil dibuat.",
       data,
     });
-  } catch (err: any) {
-    res.status(400).json({
-      code: 400,
-      status: "error",
-      message: "Invalid register, " + err.message,
-    });
+  } catch (err) {
+    next(err);
   }
 }
 
-export async function handleLogin(req: Request, res: Response) {
+export async function handleLogin(
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) {
   try {
     const { error } = loginSchema.validate(req.body);
     if (error) {
-      res.status(400).json({
-        code: 400,
-        status: "error",
-        error: "Invalid login, " + error.message,
-      });
-      return;
+      return next(error);
     }
 
     const { identifier, password } = req.body;
     const data = await login(identifier, password);
+    if (!data) {
+      const errObj = { status: 401, message: "Invalid username or password" };
+      return next(errObj);
+    }
+
     res.cookie("token", data.token, {
       httpOnly: true,
       sameSite: "none",
@@ -66,11 +65,7 @@ export async function handleLogin(req: Request, res: Response) {
       message: "Login successful.",
       data,
     });
-  } catch (err: any) {
-    res.status(400).json({
-      code: 400,
-      status: "error",
-      message: err.message,
-    });
+  } catch (err) {
+    next(err);
   }
 }

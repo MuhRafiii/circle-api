@@ -1,4 +1,4 @@
-import { Response } from "express";
+import { NextFunction, Response } from "express";
 import { AuthenticatedRequest } from "../middlewares/auth";
 import {
   followUser,
@@ -10,7 +10,8 @@ import { getFollowsSchema } from "../validations/following";
 
 export async function handleFollowUser(
   req: AuthenticatedRequest,
-  res: Response
+  res: Response,
+  next: NextFunction,
 ) {
   try {
     const followerId = req.user!.id;
@@ -33,19 +34,15 @@ export async function handleFollowUser(
       message: "You have successfully followed the user.",
       data,
     });
-  } catch (err: any) {
-    res.status(500).json({
-      code: 500,
-      status: "error",
-      message:
-        err.message || "Failed to follow the user. Please try again later.",
-    });
+  } catch (err) {
+    next(err);
   }
 }
 
 export async function handleUnfollowUser(
   req: AuthenticatedRequest,
-  res: Response
+  res: Response,
+  next: NextFunction,
 ) {
   try {
     const followerId = req.user!.id;
@@ -61,31 +58,22 @@ export async function handleUnfollowUser(
       message: "You have successfully unfollowed the user.",
       data,
     });
-  } catch (err: any) {
-    res.status(500).json({
-      code: 500,
-      status: "error",
-      message:
-        err.message || "Failed to unfollow the user. Please try again later.",
-    });
+  } catch (err) {
+    next(err);
   }
 }
 
 export async function handleGetFollows(
   req: AuthenticatedRequest,
-  res: Response
+  res: Response,
+  next: NextFunction,
 ) {
   const { type } = req.query;
   const userId = req.user!.id;
 
   const { error } = getFollowsSchema.validate(req.query);
   if (error) {
-    res.status(400).json({
-      code: 400,
-      status: "error",
-      message: error.message,
-    });
-    return;
+    return next(error);
   }
 
   try {
@@ -99,12 +87,7 @@ export async function handleGetFollows(
       status: "success",
       data,
     });
-  } catch (err: any) {
-    res.status(500).json({
-      code: 500,
-      status: "error",
-      message:
-        err.message || `Failed to fetch ${type} data. Please try again later.`,
-    });
+  } catch (err) {
+    next(err);
   }
 }

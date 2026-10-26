@@ -1,4 +1,4 @@
-import { Response } from "express";
+import { NextFunction, Response } from "express";
 import { AuthenticatedRequest } from "../middlewares/auth";
 import {
   deletePhotoProfile,
@@ -10,15 +10,14 @@ import { updateProfileSchema } from "../validations/user";
 
 export async function handleUpdateUser(
   req: AuthenticatedRequest,
-  res: Response
+  res: Response,
+  next: NextFunction,
 ) {
   try {
     const userId = req.user?.id;
     const { error } = updateProfileSchema.validate(req.body);
     if (error) {
-      return res
-        .status(400)
-        .json({ code: 400, status: "error", message: error.message });
+      next(error);
     }
 
     const { username, name, bio } = req.body;
@@ -30,19 +29,15 @@ export async function handleUpdateUser(
       message: "Profile updated",
       user: updatedUser,
     });
-  } catch (err: any) {
-    return res.status(500).json({
-      code: 500,
-      status: "error",
-      message: err.message,
-      error: err,
-    });
+  } catch (err) {
+    next(err);
   }
 }
 
 export async function handleDeletePhotoProfile(
   req: AuthenticatedRequest,
-  res: Response
+  res: Response,
+  next: NextFunction,
 ) {
   try {
     const userId = req.user!.id;
@@ -53,18 +48,15 @@ export async function handleDeletePhotoProfile(
       message: "Photo profile deleted",
       data: avatar,
     });
-  } catch (error) {
-    res.status(500).json({
-      code: 500,
-      status: "error",
-      message: "Failed to delete photo profile",
-    });
+  } catch (err) {
+    next(err);
   }
 }
 
 export async function handleSearchUser(
   req: AuthenticatedRequest,
-  res: Response
+  res: Response,
+  next: NextFunction,
 ) {
   try {
     const { keyword } = req.query;
@@ -75,18 +67,15 @@ export async function handleSearchUser(
       status: "success",
       data,
     });
-  } catch (err: any) {
-    res.status(500).json({
-      code: 500,
-      status: "error",
-      message: "Failed to fetch user data. Please try again later.",
-    });
+  } catch (err) {
+    next(err);
   }
 }
 
 export async function handleFollowSuggestions(
   req: AuthenticatedRequest,
-  res: Response
+  res: Response,
+  next: NextFunction,
 ) {
   try {
     const userId = req.user!.id;
@@ -96,11 +85,7 @@ export async function handleFollowSuggestions(
       status: "success",
       data,
     });
-  } catch (error) {
-    res.status(500).json({
-      code: 500,
-      status: "error",
-      message: "Failed to fetch user data. Please try again later.",
-    });
+  } catch (err) {
+    next(err);
   }
 }

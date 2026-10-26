@@ -1,4 +1,4 @@
-import { Response } from "express";
+import { NextFunction, Response } from "express";
 import { AuthenticatedRequest } from "../middlewares/auth";
 import { createReply, getRepliesByThread } from "../services/reply";
 import { publishToQueue } from "../utils/queue";
@@ -6,7 +6,8 @@ import { redis } from "../utils/redis";
 
 export async function handleGetRepliesByThread(
   req: AuthenticatedRequest,
-  res: Response
+  res: Response,
+  next: NextFunction,
 ) {
   try {
     const page = parseInt(req.query.page as string) || 1;
@@ -41,18 +42,15 @@ export async function handleGetRepliesByThread(
     });
     const duration = Date.now() - start;
     console.log(`Duration: ${duration} ms`);
-  } catch (err: any) {
-    res.status(400).json({
-      code: 400,
-      status: "error",
-      message: err.message,
-    });
+  } catch (err) {
+    next(err);
   }
 }
 
 export async function handleCreateReply(
   req: AuthenticatedRequest,
-  res: Response
+  res: Response,
+  next: NextFunction,
 ) {
   try {
     const userId = req.user!.id;
@@ -60,12 +58,7 @@ export async function handleCreateReply(
     const threadId = Number(req.query.thread_id);
 
     if (!content && !req.file) {
-      res.status(400).json({
-        code: 400,
-        status: "error",
-        message: "Content or image is required",
-      });
-      return;
+      throw { status: 400, message: "Content or image is required" };
     }
 
     const image = req.file ? req.file.path : null;
@@ -94,11 +87,7 @@ export async function handleCreateReply(
       message: "Reply berhasil diposting.",
       data: reply,
     });
-  } catch (err: any) {
-    res.status(500).json({
-      code: 500,
-      status: "error",
-      message: err.message || "Internal server error",
-    });
+  } catch (err) {
+    next(err);
   }
 }

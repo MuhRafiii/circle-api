@@ -1,23 +1,16 @@
 {
   "compilerOptions": {
-    "target": "es2016",
-
-    /* Modules */
+    "target": "es2019",
     "module": "commonjs",
-    "rootDir": "./src",
-
-    /* Interop Constraints */
+    "outDir": "./dist",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-
-    /* Type Checking */
     "strict": true,
-
-    /* Completeness */
     "skipLibCheck": true,
-
-    /* Testing */
-    "types": ["node"],
-    "outDir": "./dist"
-  }
+    "types": ["node", "jest"],
+    "moduleResolution": "node",
+    "resolveJsonModule": true
+  },
+  "include": ["src/**/*", "test/**/*"],
+  "exclude": ["node_modules", "dist"]
 }
