@@ -1,0 +1,68 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.getRepliesByThread = getRepliesByThread;
+exports.createReply = createReply;
+const client_1 = require("../prisma/client");
+async function getRepliesByThread(threadId, page = 1, limit = 10) {
+    const replies = await client_1.prisma.reply.findMany({
+        where: { thread_id: threadId },
+        include: {
+            user: {
+                select: {
+                    id: true,
+                    username: true,
+                    full_name: true,
+                    photo_profile: true,
+                },
+            },
+        },
+        orderBy: { created_at: "desc" },
+        skip: (page - 1) * limit,
+        take: limit,
+    });
+    const repliesFormatted = replies.map((reply) => ({
+        id: reply.id,
+        content: reply.content,
+        image: reply.image && reply.image,
+        user: {
+            id: reply.user.id,
+            username: reply.user.username,
+            name: reply.user.full_name,
+            profile_picture: reply.user.photo_profile,
+        },
+        created_at: reply.created_at,
+    }));
+    return { replies: repliesFormatted };
+}
+async function createReply(userId, threadId, content, image) {
+    const [user, reply] = await client_1.prisma.$transaction([
+        client_1.prisma.user.findUnique({
+            where: {
+                id: userId,
+            },
+        }),
+        client_1.prisma.reply.create({
+            data: {
+                user_id: userId,
+                thread_id: threadId,
+                image,
+                content,
+                created_by: userId,
+            },
+        }),
+    ]);
+    const replyFormatted = {
+        id: reply.id,
+        thread_id: reply.thread_id,
+        content: reply.content,
+        image: reply.image && reply.image,
+        created_at: reply.created_at,
+        user: {
+            id: user.id,
+            username: user.username,
+            name: user.full_name,
+            profile_picture: user.photo_profile,
+        },
+    };
+    return { reply: replyFormatted };
+}
